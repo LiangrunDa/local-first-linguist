@@ -2,12 +2,12 @@
 
 ## What is Local-first Linguist?
 
-Local-first Linguist is a local translator for a bunch of file formats. It is free and doesn't require any internet connection.
+Local-first Linguist is a local machine translator that allows you to translate subtitle (.srt), spreadsheet (.csv), and others. It is free and doesn't require any internet connection. The translator is based on MT5 and Helsinki-NLP.
 
 Current supported file formats:
-- Text files: txt
-- Tables: csv
-- Subtitles: srt
+- Text file: txt
+- Spreadsheet: csv
+- Subtitle: srt
 
 TODO:
 - md
