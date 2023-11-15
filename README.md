@@ -55,3 +55,8 @@ Some languages abbreviations:
 - ...
 
 TODO: Integrate [Fairseq](https://github.com/facebookresearch/fairseq)
+
+A side note: since Helsinki-NLP doesn't support translating from Japanese to Chinese, I included a fine-tuned MT5 model and you can use it by:
+```bash
+translate -f samples/hello.txt -s ja -t zh -m MT5
+```

@@ -1,4 +1,4 @@
-from transformers import pipeline, MarianMTModel, MarianTokenizer
+from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 class Translator:
@@ -7,8 +7,8 @@ class Translator:
 
     def load_model(self, model_path):
         try:
-            local_model = MarianMTModel.from_pretrained(pretrained_model_name_or_path=model_path)
-            local_tokenizer = MarianTokenizer.from_pretrained(pretrained_model_name_or_path=model_path)
+            local_model = AutoModelForSeq2SeqLM.from_pretrained(pretrained_model_name_or_path=model_path)
+            local_tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path=model_path)
             self.model = pipeline("translation", model=local_model, tokenizer=local_tokenizer)
         except Exception as e:
             print(e)

@@ -1,4 +1,5 @@
 from src.translator.Helsinki import HelsinkiTranslator
+from src.translator.mt5ja2zh import MT5Ja2ZhTranslator
 from src.parser.srt import SRTParser
 from src.parser.txt import TXTParser
 from src.parser.csv import CSVParser
@@ -15,8 +16,20 @@ def cli():
 
     args = parser.parse_args()
     if args.model == 'Helsinki':
-        translator = HelsinkiTranslator()
-        translator.load(args.source, args.target)
+        try:
+            translator = HelsinkiTranslator()
+            translator.load(args.source, args.target)
+        except Exception as e:
+            if str(e) == 'Model not found':
+                print("Unsupported language pair, try other models")
+            else:
+                print(e)
+            exit(1)
+    elif args.model == "MT5":
+        if args.source != 'ja' or args.target != 'zh':
+            raise Exception('Unsupported language pair')
+        translator = MT5Ja2ZhTranslator()
+        translator.load()
     else:
         raise Exception('Unsupported model')
 
