@@ -1,8 +1,8 @@
-# Local-first Linguist:Translate your files locally
+# Local-first Linguist: Translate your files locally
 
 ## What is Local-first Linguist?
 
-Local-first Linguist is a local translator for different file formats. It is free and doesn't require any internet connection.
+Local-first Linguist is a local translator for a bunch of file formats. It is free and doesn't require any internet connection.
 
 Current supported file formats:
 - Text files: txt
