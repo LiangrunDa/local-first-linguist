@@ -16,10 +16,10 @@ TODO:
 
 ## How to use it?
 
-1. Download this repository
+1. Download this Local-first Linguist
 
 ```bash
-git clone https://github.com/LiangrunDa/local-first-linguist.git
+pip install local-first-linguist
 ```
 
 2. Install the dependencies
