@@ -23,3 +23,6 @@ class TXTParser(Parser):
 
     def update(self, translated_text):
         self.lines[self.index - 1] = translated_text
+
+    def __len__(self):
+        return len(self.lines)

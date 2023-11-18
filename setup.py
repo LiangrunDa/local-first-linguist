@@ -7,8 +7,11 @@ setup(
     license='MIT',
     packages=find_packages(),
     entry_points={
-          'console_scripts': [
-              'translate=src.cli:cli'
-          ]
-      }
+        'console_scripts': [
+            'translate=src.cli:cli'
+        ]
+    },
+    install_requires=[
+        'tqdm>=4.0.0'
+    ]
 )

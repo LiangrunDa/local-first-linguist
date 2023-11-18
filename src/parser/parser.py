@@ -13,11 +13,10 @@ class Parser:
     def save(self):
         root, extension = os.path.splitext(self.path)
         new_file_path = f"{root}_translated{extension}"
-        with open(new_file_path, 'w') as file:
+        with open(new_file_path, 'w', encoding='utf-8') as file:
             file.write(self.encode())
 
     def __iter__(self):
-        self.load()
         return self
 
     def encode(self):

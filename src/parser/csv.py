@@ -37,3 +37,9 @@ class CSVParser(Parser):
 
     def update(self, translated_text):
         self.lines[self.index][self.elementIdx - 1] = translated_text
+
+    def __len__(self):
+        cnt = 0
+        for i in range(self.lines):
+            cnt += len(self.lines[i])
+        return cnt

@@ -43,3 +43,6 @@ class SRTParser(Parser):
 
     def update(self, translated_text):
         self.subtitles[self.index - 1]['text'] = translated_text
+
+    def __len__(self):
+        return len(self.subtitles)

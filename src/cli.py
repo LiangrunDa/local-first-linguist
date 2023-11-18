@@ -5,6 +5,7 @@ from src.parser.txt import TXTParser
 from src.parser.csv import CSVParser
 import os
 import argparse
+from tqdm import tqdm
 
 
 def cli():
@@ -13,7 +14,7 @@ def cli():
     parser.add_argument('-s', '--source', help='source language', required=True)
     parser.add_argument('-t', '--target', help='target language', required=True)
     parser.add_argument("-m", "--model", help="model to use", required=False, default='Helsinki')
-
+    parser.add_argument("-l", "--max-length", help="maximum length", required=False, default=128, type=int)
     args = parser.parse_args()
     if args.model == 'Helsinki':
         try:
@@ -28,27 +29,30 @@ def cli():
     elif args.model == "MT5":
         if args.source != 'ja' or args.target != 'zh':
             raise Exception('Unsupported language pair')
-        translator = MT5Ja2ZhTranslator()
+        translator = MT5Ja2ZhTranslator(args.max_length)
         translator.load()
     else:
         raise Exception('Unsupported model')
 
     # select parser based on file extension
+    file_parser = None
     extension = os.path.splitext(args.file)[1]
     if extension == '.srt':
-        parser = SRTParser(args.file)
+        file_parser = SRTParser(args.file)
     elif extension == '.txt':
-        parser = TXTParser(args.file)
+        file_parser = TXTParser(args.file)
     elif extension == '.csv':
-        parser = CSVParser(args.file)
+        file_parser = CSVParser(args.file)
     else:
         raise Exception('Unsupported file type')
 
-    for content in parser:
+    print("Translation started")
+    file_parser.load()
+    for content in tqdm(file_parser, total=len(file_parser)):
         translated = translator.translate(content)
-        parser.update(translated)
+        file_parser.update(translated) 
 
-    parser.save()
+    file_parser.save()
 
 
 if __name__ == '__main__':
